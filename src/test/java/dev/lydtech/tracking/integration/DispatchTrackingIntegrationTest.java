@@ -34,7 +34,7 @@ import static org.hamcrest.Matchers.equalTo;
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_CLASS)
 @ActiveProfiles("test")
 @EmbeddedKafka(controlledShutdown = true)
-public class DispatchTrackingIntegration {
+public class DispatchTrackingIntegrationTest {
 
     private final static String DISPATCH_TRACKING_TOPIC = "dispatch.tracking";
     private final static String TRACKING_STATUS_TOPIC = "tracking.status";
