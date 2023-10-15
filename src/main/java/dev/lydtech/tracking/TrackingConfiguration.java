@@ -1,6 +1,5 @@
 package dev.lydtech.tracking;
 
-import dev.lydtech.dispatch.message.DispatchPreparing;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -26,10 +25,11 @@ import java.util.Map;
 @ComponentScan(basePackages = { "dev.lydtech"})
 public class TrackingConfiguration {
 
-    private static String TRUSTED_PACKAGES = "dev.lydtech.dispatch.message";
+    private static final String TRUSTED_PACKAGES = "dev.lydtech.dispatch.message";
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, Object> kafkaListenerContainerFactory(ConsumerFactory<String, Object> consumerFactory) {
+
         final ConcurrentKafkaListenerContainerFactory<String, Object> factory = new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
@@ -44,6 +44,7 @@ public class TrackingConfiguration {
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         config.put(JsonDeserializer.TRUSTED_PACKAGES, TRUSTED_PACKAGES);
         return new DefaultKafkaConsumerFactory<>(config);
+
     }
 
     @Bean
